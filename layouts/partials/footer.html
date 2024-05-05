@@ -1,0 +1,12 @@
+<p>Powered by
+    <a href="https://gohugo.io/">Hugo</a>
+    and
+    <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+</p>
+<p>
+    <a href="https://beian.miit.gov.cn/">粤ICP备2023133654号-1</a>
+</p>
+
+{{ if .Param "math" }}
+{{ partialCached "math.html" . }}
+{{ end }}

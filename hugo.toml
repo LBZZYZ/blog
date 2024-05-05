@@ -1,0 +1,63 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = '欣菜团'
+theme = 'Typo'
+
+# Disable tags, actually, they are rendered as a list, but the idea is to disable them.
+disableKinds = ['taxonomy']
+
+# Google analytics code
+googleAnalytics = "G-xxxxxxxxxx"
+
+[params]
+# Appearance
+theme = 'auto'
+
+# Intro on main page, content in markdown, if you omit title or content the other can be displayed
+homeIntroTitle = '香菜说'
+homeIntroContent = """
+即使整个人类，除一人之外，都持有一种意见，而只有那一人持有相反的意见，人类也没有更好的理由不让那个人说话，正如那个人一旦大权在握，也没有理由不让人类说话一样。
+
+![香菜](https://cdn.jsdelivr.net/gh/LBZZYZ/PicX@master/Blog/IMG_4835.183gbpftyov4.webp)
+"""
+
+# Collection to display on home page: 
+# in this case we would display content/posts pages
+#homeCollectionTitle = 'Posts'
+#homeCollection = 'posts'
+
+# Pagination size across all website, this is the same for homepage and single list page
+paginationSize = 100
+# Display summaries under post list entries
+listSummaries = false
+# List entries date format
+listDateFormat = '2 Jan 2006'
+
+# Social icons
+[[params.social]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/your-name"
+
+[[params.social]]
+name = "medium"
+url = "https://medium.com/@your-name"
+
+[[params.social]]
+name = "github"
+url = "https://github.com/LBZZYZ"
+
+# Main menu pages
+[[params.menu]]
+name = "home"
+url = "/"
+
+[[params.menu]]
+name = "posts"
+url = "/posts"
+
+# Syntax highlight on code blocks, all styles: 
+# https://xyproto.github.io/splash/docs/all.html
+# I suggest algol
+[markup]
+[markup.highlight]
+style = 'algol'
