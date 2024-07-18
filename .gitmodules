@@ -3,4 +3,4 @@
 	url = https://github.com/LBZZYZ/WorkNotes.git
 [submodule "themes/typo"]
 	path = themes/typo
-	url = git@github.com:tomfran/typo.git
+	url = https://github.com/tomfran/typo.git
