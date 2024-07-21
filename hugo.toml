@@ -35,8 +35,8 @@ listDateFormat = '2 Jan 2006'
 
 # Social icons
 [[params.social]]
-name = "linkedin"
-url = "https://www.linkedin.com/in/your-name"
+name = "twitter"
+url = "https://x.com/LBZZYZ"
 
 [[params.social]]
 name = "medium"
