@@ -48,6 +48,10 @@ name = "home"
 url = "/"
 
 [[params.menu]]
+name = "reading"
+url = "/tags/reading"
+
+[[params.menu]]
 name = "writing"
 url = "/tags/writing"
 
