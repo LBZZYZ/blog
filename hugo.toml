@@ -6,6 +6,8 @@ theme = 'Typo'
 # Google analytics code
 googleAnalytics = "G-xxxxxxxxxx"
 
+ignorefiles=["4 ARCHIVE/Templates/*", "5 INBOX/notes/_footer.md"]
+
 [params]
 # Appearance
 theme = 'light'
