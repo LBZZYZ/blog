@@ -43,7 +43,7 @@ check_command "hugo build"
 
 # 创建压缩包
 echo "Creating tarball..."
-tar -zcvf "$TAR_LOCAL_DIR" $TARGET_LOCAL_DIR/
+tar -zcf "$TAR_LOCAL_DIR" $TARGET_LOCAL_DIR/
 check_command "tar"
 
 # 清空服务器 html 目录
@@ -56,7 +56,7 @@ check_command "scp"
 
 # 远程执行脚本
 echo "Executing remote blog script..."
-ssh $ADDR "cd $TARGET_REMOTE_DIR && tar -zxvf $TAR_NAME --strip-components=2 && rm $TAR_NAME"
+ssh $ADDR "cd $TARGET_REMOTE_DIR && tar -zxf $TAR_NAME --strip-components=2 && rm $TAR_NAME"
 check_command "ssh"
 
 # 清除本地产物
