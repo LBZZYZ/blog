@@ -1,19 +1,16 @@
 #!/bin/bash
 
-# 设置变量
-BLOG_TAR="./blog.tar.gz"
-
-PUBLIC_DIR="./public"
-
-POSTS_DIR="./content/posts"
-
-REMOTE_SERVER="root@47.119.119.139:/root/nginx/html"
-
-REMOTE_SCRIPT="root@47.119.119.139:/home/simon/blog.sh"
-
-HUGO_THEME="typo"
-
+THEME="typo"
 BASE_URL="https://www.libingzhi.top/"
+
+TAR_NAME="blog.tar.gz"
+TAR_LOCAL_DIR="./$TAR_NAME"
+
+POSTS_LOCAL_DIR="./content/posts"
+TARGET_LOCAL_DIR="./public"
+TARGET_REMOTE_DIR="/root/nginx/html"
+
+ADDR="root@47.119.119.139"
 
 # 函数：检查命令是否执行成功
 check_command() {
@@ -25,12 +22,12 @@ check_command() {
 
 # 清理操作
 echo "Cleaning up old files..."
-rm -f "$BLOG_TAR"
-rm -rf "$PUBLIC_DIR"
+rm -f "$TAR_LOCAL_DIR"
+rm -rf "$TARGET_LOCAL_DIR"
 
-# 切换到 posts 目录并更新 Git
+# 更新文章
 echo "Updating posts from Git..."
-cd "$POSTS_DIR" || exit
+cd "$POSTS_LOCAL_DIR" || exit
 git clean -df
 git checkout main
 git pull --rebase
@@ -41,25 +38,28 @@ cd - || exit
 
 # 生成博客静态文件
 echo "Building Hugo site..."
-hugo --theme="$HUGO_THEME" --baseURL="$BASE_URL" --buildDrafts
+hugo --theme="$THEME" --baseURL="$BASE_URL" --buildDrafts
 check_command "hugo build"
 
 # 创建压缩包
 echo "Creating tarball..."
-tar -zcvf "$BLOG_TAR" ./public/
+tar -zcvf "$TAR_LOCAL_DIR" $TARGET_LOCAL_DIR/
 check_command "tar"
 
 # 清空服务器 html 目录
-ssh root@47.119.119.139 "rm -rf /root/nginx/html/*"
+ssh $ADDR "rm -rf $TARGET_REMOTE_DIR/*"
 
 # 上传压缩包到远程服务器
 echo "Uploading blog.tar to remote server..."
-scp "$BLOG_TAR" "$REMOTE_SERVER"
+scp "$TAR_LOCAL_DIR" "$ADDR:$TARGET_REMOTE_DIR"
 check_command "scp"
 
 # 远程执行脚本
 echo "Executing remote blog script..."
-ssh root@47.119.119.139 "cd /root/nginx/html && tar -zxvf blog.tar.gz --strip-components=2 && rm blog.tar.gz"
+ssh $ADDR "cd $TARGET_REMOTE_DIR && tar -zxvf $TAR_NAME --strip-components=2 && rm $TAR_NAME"
 check_command "ssh"
+
+# 清除本地产物
+rm -f "$TAR_LOCAL_DIR"
 
 echo "Blog deployment completed successfully!"
