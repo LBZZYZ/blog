@@ -1,6 +1,7 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'TablePie'
+# https://themes.gohugo.io/themes/typo/
 theme = 'Typo'
 
 # Google analytics code
@@ -10,7 +11,7 @@ ignorefiles=["4 ARCHIVE/Templates/*", "5 INBOX/notes/_footer.md"]
 
 [params]
 # Appearance
-theme = 'light'
+theme = 'auto'
 
 # Intro on main page, content in markdown, if you omit title or content the other can be displayed
 homeIntroTitle = '我们都只是这颗蓝色星球上的微小尘埃。'
@@ -31,6 +32,9 @@ listSummaries = false
 # List entries date format
 listDateFormat = '2 Jan 2006'
 
+[params.breadcrumbs]
+enabled = false
+
 # Social icons
 [[params.social]]
 name = "twitter"
@@ -48,6 +52,10 @@ url = "https://github.com/LBZZYZ"
 [[params.menu]]
 name = "home"
 url = "/"
+
+[[params.menu]]
+name = "tech"
+url = "/tags/技术"
 
 [[params.menu]]
 name = "reading"
