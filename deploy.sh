@@ -1,5 +1,7 @@
 #!/bin/bash
 
+POSTS_WITH_GIT=false
+
 THEME="typo"
 BASE_URL="https://www.libingzhi.top/"
 
@@ -26,12 +28,15 @@ rm -f "$TAR_LOCAL_DIR"
 rm -rf "$TARGET_LOCAL_DIR"
 
 # 更新文章
-echo "Updating posts from Git..."
-cd "$POSTS_LOCAL_DIR" || exit
-git clean -df
-git checkout main
-git pull --rebase
-check_command "git pull"
+if [ $POSTS_WITH_GIT ];
+then
+    echo "Updating posts from Git..."
+    cd "$POSTS_LOCAL_DIR" || exit
+    git clean -df
+    git checkout main
+    git pull --rebase
+    check_command "git pull"
+fi
 
 # 返回根目录
 cd - || exit
