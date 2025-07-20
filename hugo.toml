@@ -1,5 +1,6 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
+defaultContentLanguage = 'en-us'
 title = 'TablePie'
 # https://themes.gohugo.io/themes/typo/
 theme = 'Typo'
@@ -9,9 +10,14 @@ googleAnalytics = "G-xxxxxxxxxx"
 
 ignorefiles=["4 ARCHIVE/Templates/*", "5 INBOX/notes/_footer.md"]
 
+[module]
+[module.hugoVersion]
+extended = false
+min = "0.116.0"
+
 [params]
 # Appearance
-theme = 'auto'
+theme = 'light'
 
 # Intro on main page, content in markdown, if you omit title or content the other can be displayed
 homeIntroTitle = '我们都只是这颗蓝色星球上的微小尘埃。'
@@ -31,6 +37,10 @@ paginationSize = 100
 listSummaries = false
 # List entries date format
 listDateFormat = '2006 Jan 2'
+
+readTime = true
+
+colorPalette = 'eink'
 
 [params.breadcrumbs]
 enabled = false
@@ -62,4 +72,4 @@ url = "/posts"
 # I suggest algol
 [markup]
 [markup.highlight]
-style = 'algol'
+style = 'perldoc'
